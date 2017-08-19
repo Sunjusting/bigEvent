@@ -1,0 +1,47 @@
+/* here you can put your own css to customize and override the theme */
+.content-ma{
+	margin-top:40px;
+}
+
+.news-carousel img{
+	width:100%;
+	height:400px !important;
+}
+
+.advertisment-1 img{
+	width:100%;
+	height:400px;
+}
+
+.advertisment-2 img{
+	width:100%;
+	height: 200px;
+}
+
+.margin-top-40{
+	margin-top:40px;
+}
+.tt5 a{
+	font-size: 14px !important;	
+	line-height: 20px;
+}
+
+/* 前台页面公共CSS */
+.front-title-1{
+	font-size: 32px;
+}
+.front-f2{
+	font-size:16px;
+	line-height: 20px;
+}
+.front-f3{
+	font-size: 16px;
+	line-height: 26px;
+}
+
+.front-margin-10{
+	margin-top:10px;
+}
+.front-margin-top-40{
+	margin-top:40px;
+}
