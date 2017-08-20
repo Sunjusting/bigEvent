@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}参考文献{% endblock %}
+
+{% block content %}
+<div class="page-content-wrapper">
+	<!-- BEGIN PAGE -->
+	<div class="page-content">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+				<h3 class="page-title">
+					参考文献
+				</h3>
+				<ul class="breadcrumb">
+					<li>
+						<i class="icon-home"></i>
+						<a href="">首页</a>
+						<i class="icon-angle-right"></i>
+					</li>
+					<li>
+						<a href="">大事件管理</a>
+						<i class="icon-angle-right"></i>
+					</li>
+					<li>参考文献</li>
+
+				</ul>
+				<!-- END PAGE TITLE & BREADCRUMB-->
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<!-- BEGIN EXAMPLE TABLE PORTLET-->
+				<div class="portlet-body">
+					<div class="table-toolbar"><div class="row">
+						<div class="btn-group col-md-8">
+							<a href="{% url 'bigs-addRef' %}" class="btn green">
+								新增文献 <i class="fa fa-plus"></i>
+							</a>
+						</div>
+						<form action="{% url 'bigs-references' %}" method="GET">
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control" name="keyword" >
+								<span class="input-group-btn">
+									<button class="btn blue" type="submit"><i class="fa fa-search"></i></button>
+								</span>
+							</div>
+						</div></form>
+
+					</div></div>
+
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th class="center">序号</th>
+								<th class="">文献名称</th>
+								<th class="hidden-480 center">作者</th>
+								<th class="hidden-480 center">出版社</th>
+								<th class="hidden-480 center">出版时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<!-- {% load admin_tags %} -->
+							{% for item in refs %}
+								<tr class="odd gradeX">
+									<td class="center">{{ item.id }}</td>
+									<td class="">
+										{{ item.name }}
+									</td>
+									<td class="hidden-480 center">{{ item.author }}</td>
+									<td class="center hidden-480">{{ item.publisher }}</td>
+									<td class="center hidden-480">{{ item.pubtime }}</td>
+
+									<td >
+										<a href="{% url 'bigs-edit-ref' item.id %}">编辑</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+
+					</table>
+					<div>
+						{{ pagestr|safe }}
+					</div>
+				</div>
+				<!-- END EXAMPLE TABLE PORTLET-->
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock %}
