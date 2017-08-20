@@ -12,4 +12,4 @@ class RefsForm(ModelForm):
 
 	class Meta:
 		model = Refs
-		fields = ['id','name','author','publisher','pubtime','cover']
+		fields = ['id','name','author','publisher','pubtime','cover','intro']

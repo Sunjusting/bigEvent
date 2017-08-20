@@ -56,9 +56,28 @@ def show():
 	pass
 
 def references(request):
-	return HttpResponse('references')
+	p = request.GET.get('p')
+	k = request.GET.get('keyword')
+	if p == None:
+		p = 1
+	if k == None:
+		k = ''
 
-def addRefs(request):
+	if k != '':
+		refs = Refs.objects.filter(Q(name__contains=k)|Q(author__contains=k)|Q(publisher__contains=k))
+	else:
+		refs = Refs.objects.all()
+	paginator = extpaginator(refs, 10)
+	pagestr = paginator.pagestr(p,{'k':k})
+	try:
+		prefs = paginator.page(p)
+	except PageNotAnInteger:
+		prefs = paginator.page(1)
+	except EmptyPage:
+		pusers = paginator.page(paginator.num_pages)
+	return TemplateResponse(request, 'bigs/references.html',{'refs':prefs, 'pagestr':pagestr})
+
+def addRef(request):
 	if request.method == "POST":
 		form = RefsForm(request.POST,request.FILES)
 		if form.is_valid():
@@ -69,4 +88,19 @@ def addRefs(request):
 				return HttpResponse('Error')
 	else:
 		form = RefsForm()
-	return TemplateResponse(request, 'bigs/addRefs.html',{'form':form})
+	return TemplateResponse(request, 'bigs/addRef.html',{'form':form})
+
+def editRef(request,id):
+	if request.method == "POST":
+		a = Refs.objects.get(id=request.POST['id'])
+		form = RefsForm(request.POST,instance=a)
+		if form.is_valid():
+			try:
+				form.save()
+			except :
+				return HttpResponse('Error')
+		return HttpResponseRedirect(reverse('bigs-references'))
+	else:
+		refs = Refs.objects.get(id=id)
+		form = RefsForm(instance=refs)
+		return TemplateResponse(request, 'bigs/editRef.html',{'form':form,'id':id})
