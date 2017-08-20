@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ ref.name }}{% endblock %}
+
+{% block content %}
+<div class="page-content-wrapper">
+	<!-- BEGIN PAGE -->
+	<div class="page-content">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+				<h3 class="page-title">
+					参考文献：{{ ref.name }}
+				</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<!-- BEGIN EXAMPLE TABLE PORTLET-->
+				<div class="portlet-body">
+					<div class="row">
+						<div class="col-md-5">
+							<img src="{{ ref.cover.url }}" width="100%" />
+						</div>
+						<div class="col-md-7">
+							<h3>{{ ref.name }}</h3>
+							<p>作者： {{ref.author}}</p>
+							<p>出版社：{{ref.publisher}}</p>
+							<p>出版时间：{{ref.pubtime}}</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<p> {{ref.intro}}</p>
+						</div>
+					</div>
+
+
+				</div>
+				<!-- END EXAMPLE TABLE PORTLET-->
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock %}

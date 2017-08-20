@@ -104,3 +104,14 @@ def editRef(request,id):
 		refs = Refs.objects.get(id=id)
 		form = RefsForm(instance=refs)
 		return TemplateResponse(request, 'bigs/editRef.html',{'form':form,'id':id})
+
+def delRef(request,id):
+	try:
+		Refs.objects.filter(id=id).delete()
+	except Exception as e:
+		raise 'Can not delete the Ref'
+	return HttpResponseRedirect(reverse('bigs-references'))
+
+def showRef(request,id):
+	ref = Refs.objects.get(id=id)
+	return TemplateResponse(request, 'bigs/showRef.html', {'ref':ref})

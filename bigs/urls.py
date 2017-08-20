@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^references/$',bigs_views.references,name="bigs-references"),
     url(r'^addRef/$',bigs_views.addRef,name="bigs-addRef"),
     url(r'^(\d+)/editRef/$',bigs_views.editRef,name="bigs-edit-ref"),
+    url(r'^(\d+)/delRef/$',bigs_views.delRef,name="bigs-del-ref"),
+    url(r'^(\d+)/showRef/$',bigs_views.showRef,name="bigs-show-ref"),
 
 ]

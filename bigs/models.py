@@ -39,6 +39,7 @@ class Refs(models.Model):
     author = models.CharField(u'作者',max_length=100)
     publisher = models.CharField(u'出版社',max_length=100)
     pubtime = models.DateTimeField(u'出版时间')
+    isbn = models.BigIntegerField(u'ISBN',max_length=13)
     intro = models.TextField(u'简介')
     cover = models.ImageField(u'封面',upload_to=get_file_path)
     create_time = models.DateTimeField(auto_now_add=True)
